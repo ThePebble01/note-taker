@@ -9,7 +9,7 @@ This app allows you to take, store, and uncontrollably share notes wherever you 
 ## Usage
 
 1. Navigate to the app
-   https://peaceful-everglades-48756-0fc745cb9675.herokuapp.com/notes
+   https://peaceful-everglades-48756-0fc745cb9675.herokuapp.com
 
 2. Select Get Started
 
