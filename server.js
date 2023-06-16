@@ -56,6 +56,32 @@ app.post("/api/notes", (req, res) => {
     });
   }
 });
+app.delete("/api/notes/:noteId", (req, res) => {
+  if (req.params.noteId) {
+    const noteIdToDelete = req.params.noteId;
+    console.log(noteIdToDelete);
+    fs.readFile(notesFilePath, "utf8", (error, noteData) => {
+      if (error) {
+        res.status(500).json([{}]);
+      } else {
+        const notes = JSON.parse(noteData);
+        const notesToRetain = notes.filter((note) => note.id != noteIdToDelete);
+        fs.writeFile(
+          notesFilePath,
+          JSON.stringify(notesToRetain, null, 4),
+          (error) =>
+            error
+              ? console.error(error)
+              : console.info(`\nData written to ${notesFilePath}`)
+        );
+        const response = {
+          status: "success",
+        };
+        res.json(response);
+      }
+    });
+  }
+});
 app.get("*", (req, res) =>
   res.sendFile(path.join(__dirname, "/public/index.html"))
 );
